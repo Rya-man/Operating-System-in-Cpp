@@ -1,27 +1,27 @@
-.set MAGIC, 0x1bad002
-.set FLAGS, (1<<0 | 1<<1)
-.set CHECKSUM, -(MAGIC + FLAGS)
-
 .section .multiboot
-	.long MAGIC
-	.long FLAGS
-	.long CHECKSUM
+    .long 0x1BADB002         # Multiboot header magic number
+    .long 0                   # Flags (unused)
+    .long -(0x1BADB002 + 0)   # Checksum (magic + flags)
 
 .section .text
 .extern kernelMain
 .global loader
 
 loader:
-	mov $kernel_stack, %esp
-	push %eax
-	push %ebx
-	call kernelMain
+    mov $kernel_stack, %esp
+
+    # Set up the parameters for calling kernelMain
+    mov $0, %eax              # Multiboot structure address (not used here)
+    mov $0x2BADB002, %ebx     # Magic number
+
+    call kernelMain
 
 _stop:
-	cli
-	hlt
-	jmp _stop
+    cli
+    hlt
+    jmp _stop
 
 .section .bss
-.space 2*1024*1024
+    .space 2*1024*1024
 kernel_stack:
+

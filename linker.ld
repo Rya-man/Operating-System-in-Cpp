@@ -8,9 +8,9 @@ SECTIONS
 
 	.text :
 	{
-		*( .multiboot )
+		*(.multiboot)
 		*(.text*)
-		*( .rodata )
+		*(.rodata)
 	}
 	.data :
 	{
@@ -29,7 +29,7 @@ SECTIONS
 	/DISCARD/ : 
 	{
 	
-		*(.fini_array* )
-		*(.comment )
+		*(.fini_array*)
+		*(.comment)
 	}
 }
