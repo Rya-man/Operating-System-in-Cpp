@@ -8,13 +8,10 @@ void printf(char* str)
 
 extern "C" void kernelMain(void* multiboot_structure, unsigned int magicnumber)
 {
-    if (magicnumber != 0x2BADB002) {
-        printf("Error: Invalid Multiboot header\n");
-        while (1);
-    }
+    
 
 
-    printf("Hello");
+    printf("Hello everyone welcome to my OS");
 
     while(1);
 }
