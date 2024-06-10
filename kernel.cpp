@@ -8,9 +8,6 @@ void printf(char* str)
 
 extern "C" void kernelMain(void* multiboot_structure, unsigned int magicnumber)
 {
-    
-
-
     printf("Hello everyone welcome to my OS");
 
     while(1);
